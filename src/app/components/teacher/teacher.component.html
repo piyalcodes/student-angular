@@ -1,0 +1,116 @@
+<div class="container-fluid">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/student">Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/teacher">Teacher</a> 
+                    </li> 
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <br /><br />
+    <h3>Teachers List  <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addTeacher">Add
+        Teacher</button></h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Name</th> 
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let teacher of teacherList">
+                <td scope="row">{{teacher.id}}</td>
+                <td>{{teacher.name}}</td>
+                <td>{{teacher.surname}}</td>
+                <td> <div class="form-actions">
+
+                    <button type="button" class="btn btn-primary"   data-bs-toggle="modal" data-bs-target="#editTeacher" (click)="editTeacher(teacher)">Edit</button>
+                    <button type="button" class="btn btn-outline-danger"   >Delete</button>
+                </div></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Add teacher-->
+<div class="modal fade" id="addTeacher" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Teacher</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="teacherDetail">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label"> Name</label>
+                        <input type="text" class="form-control" formControlName="name" id="name"
+                            aria-describedby="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label"> Surname</label>
+                        <input type="text" class="form-control" formControlName="surname" id="exampleInputPassword1">
+                    </div>
+                    <div class="form-actions">
+
+                        <button type="button" class="btn btn-primary"   data-bs-toggle="modal" data-bs-target="#addTeacher" (click)="addTeacher()">Add</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Edit teacher-->
+<div class="modal fade" id="editTeacher" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Teacher</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="teacherDetail">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label"> Name</label>
+                        <input type="text" class="form-control" formControlName="name" id="name"
+                            aria-describedby="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label"> Surname</label>
+                        <input type="text" class="form-control" formControlName="surname" id="exampleInputPassword1">
+                    </div>
+                    <div class="form-actions">
+
+                        <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#editTeacher" (click)="updateTeacher()">Update</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
